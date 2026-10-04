@@ -1,0 +1,9 @@
+# Only publish the videos the page actually uses
+Videos/*
+!Videos/GulagBot.mp4
+!Videos/android_compass_app.mp4
+!Videos/League_tracker_720.mp4
+!Videos/Heal_Project.mp4
+!Videos/Holy_paladin.mp4
+!Videos/Boss_Monster_video.mp4
+!Videos/Gamehub.mp4

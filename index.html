@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Antti Niemi — Projects</title>
+<meta name="description" content="Portfolio of game, mobile and web projects by Antti Niemi.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f7f7f5;
+    --surface: #ffffff;
+    --text: #1a1a1a;
+    --muted: #5f6368;
+    --border: #e4e4e0;
+    --accent: #3b5bdb;
+    --accent-soft: #e8edff;
+    --tag-bg: #f0f0ec;
+    --shadow: 0 1px 2px rgba(0,0,0,.04), 0 4px 16px rgba(0,0,0,.04);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #111214;
+      --surface: #1a1b1e;
+      --text: #ececec;
+      --muted: #9ba0a8;
+      --border: #2b2d31;
+      --accent: #8ea6ff;
+      --accent-soft: #232a45;
+      --tag-bg: #25272b;
+      --shadow: none;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #111214;
+    --surface: #1a1b1e;
+    --text: #ececec;
+    --muted: #9ba0a8;
+    --border: #2b2d31;
+    --accent: #8ea6ff;
+    --accent-soft: #232a45;
+    --tag-bg: #25272b;
+    --shadow: none;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: "Inter", system-ui, sans-serif;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  .wrap { max-width: 1040px; margin: 0 auto; padding: 0 16px; }
+
+  header { padding: 72px 0 40px; }
+  .eyebrow {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 13px; color: var(--accent); letter-spacing: .02em;
+  }
+  h1 { font-size: clamp(32px, 6vw, 48px); line-height: 1.1; margin: 8px 0 16px; letter-spacing: -.02em; }
+  .intro { max-width: 620px; color: var(--muted); font-size: 17px; }
+  .links { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 24px; }
+  .btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 9px 16px; border-radius: 8px; font-weight: 500; font-size: 14px;
+    border: 1px solid var(--border); background: var(--surface); color: var(--text);
+  }
+  .btn:hover { text-decoration: none; border-color: var(--accent); }
+  .btn.primary { background: var(--accent); border-color: var(--accent); color: #fff; }
+  :root[data-theme="dark"] .btn.primary { color: #111; }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .btn.primary { color: #111; } }
+  .btn svg { width: 16px; height: 16px; }
+
+  .skills { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 28px; }
+
+  section { padding-top: 16px; }
+  .section-head { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; margin: 24px 0 20px; }
+  h2 { font-size: 20px; letter-spacing: -.01em; }
+  .section-head p { color: var(--muted); font-size: 14px; }
+
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 16px; padding-bottom: 40px; }
+  .card {
+    background: var(--surface); border: 1px solid var(--border); border-radius: 12px;
+    padding: 22px; display: flex; flex-direction: column; gap: 12px;
+    box-shadow: var(--shadow); transition: border-color .15s, transform .15s;
+  }
+  .card:hover { border-color: var(--accent); transform: translateY(-2px); }
+  .media {
+    margin: -22px -22px 4px; aspect-ratio: 16 / 9; overflow: hidden;
+    border-radius: 11px 11px 0 0; background: var(--tag-bg);
+    border-bottom: 1px solid var(--border);
+  }
+  .media video, .media img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .meta { display: flex; justify-content: space-between; font-size: 12px; color: var(--muted); font-family: "JetBrains Mono", monospace; }
+  .card h3 { font-size: 18px; letter-spacing: -.01em; }
+  .card p { color: var(--muted); font-size: 14.5px; }
+  .card ul { color: var(--muted); font-size: 14px; padding-left: 18px; }
+  .card li { margin: 2px 0; }
+  .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: auto; padding-top: 4px; }
+  .tag {
+    font-size: 12px; font-weight: 500; padding: 3px 9px; border-radius: 6px;
+    background: var(--tag-bg); color: var(--text);
+  }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; font-size: 13px; border-top: 1px solid var(--border); padding-top: 12px; }
+  .role { color: var(--muted); }
+
+  footer { border-top: 1px solid var(--border); padding: 28px 0; color: var(--muted); font-size: 13px; }
+  footer .wrap { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+
+  .theme-toggle {
+    position: fixed; top: 16px; right: 16px; width: 38px; height: 38px;
+    border-radius: 50%; border: 1px solid var(--border); background: var(--surface);
+    color: var(--text); cursor: pointer; display: grid; place-items: center;
+  }
+  .theme-toggle svg { width: 18px; height: 18px; }
+
+  @media (max-width: 480px) {
+    header { padding-top: 56px; }
+    .grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+</button>
+
+<header class="wrap">
+  <div class="eyebrow">// portfolio</div>
+  <h1>Antti Niemi</h1>
+  <p class="intro">
+    I build Android apps, backends and tools that talk to real APIs: a Kotlin and
+    Jetpack Compose app, a Discord bot, and a Node.js service on top of the Riot Games API.
+    I've also made several games in small teams.
+  </p>
+  <div class="links">
+    <a class="btn primary" href="https://github.com/MrNaimi" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2c-3.3.7-4-1.6-4-1.6-.6-1.4-1.4-1.8-1.4-1.8-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.7-1.6-2.7-.3-5.5-1.3-5.5-5.9 0-1.3.5-2.4 1.2-3.2-.1-.3-.5-1.5.1-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0C17.3 4.7 18.3 5 18.3 5c.7 1.7.2 2.9.1 3.2.8.8 1.2 1.9 1.2 3.2 0 4.6-2.8 5.6-5.5 5.9.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .5z"/></svg>
+      GitHub
+    </a>
+  </div>
+  <div class="skills">
+    <span class="tag">Kotlin</span>
+    <span class="tag">Jetpack Compose</span>
+    <span class="tag">Android</span>
+    <span class="tag">JavaScript</span>
+    <span class="tag">Node.js</span>
+    <span class="tag">Express</span>
+    <span class="tag">REST APIs</span>
+    <span class="tag">Python</span>
+    <span class="tag">Godot / GDScript</span>
+    <span class="tag">Git</span>
+  </div>
+</header>
+
+<main class="wrap">
+  <section>
+    <div class="section-head">
+      <h2>Featured projects</h2>
+      <p>Mobile, backend and API work</p>
+    </div>
+    <div class="grid">
+
+    <article class="card">
+      <div class="media">
+        <video src="Videos/GulagBot.mp4" autoplay muted loop playsinline preload="metadata" aria-label="GulagBot in Discord: League bets, coinflip and daily coins"></video>
+      </div>
+      <div class="meta"><span>Discord bot</span><span>Sep 2026</span></div>
+      <h3>GulagBot</h3>
+      <p>A Discord bot for a friend group's server, with slash commands, a virtual economy and a countdown to a game launch.</p>
+      <ul>
+        <li>Mini-games like coinflip and slots, with leaderboards</li>
+        <li>Bets on League games using live Riot API data</li>
+        <li>Deploys to a Raspberry Pi automatically on every push</li>
+      </ul>
+      <div class="tags"><span class="tag">discord.js</span><span class="tag">Node.js</span><span class="tag">pm2</span></div>
+      <div class="card-foot"><span class="role">Contributor</span><a href="https://github.com/tuulosss/GulagBot" target="_blank" rel="noopener">View repo →</a></div>
+    </article>
+
+    <article class="card">
+      <div class="media">
+        <video src="Videos/android_compass_app.mp4" autoplay muted loop playsinline preload="metadata" aria-label="Compass App: compass view and nearby locations list"></video>
+      </div>
+      <div class="meta"><span>Android app</span><span>Mar–Jun 2026</span></div>
+      <h3>Compass App</h3>
+      <p>An Android compass that shows nearby points of interest, with the direction and distance to each one.</p>
+      <ul>
+        <li>Compass built on the device sensors, plus GPS location</li>
+        <li>Nearby places sorted by category, and you can add your own</li>
+        <li>Map tiles cached for offline use</li>
+      </ul>
+      <div class="tags"><span class="tag">Kotlin</span><span class="tag">Jetpack Compose</span><span class="tag">MVVM</span></div>
+      <div class="card-foot"><span class="role">Team of 4</span><a href="https://github.com/iiropaakkonen/android_compass_app" target="_blank" rel="noopener">View repo →</a></div>
+    </article>
+
+    <article class="card">
+      <div class="media">
+        <video src="Videos/League_tracker_720.mp4" autoplay muted loop playsinline preload="metadata" aria-label="League Tracker: adding players and showing their ranked stats"></video>
+      </div>
+      <div class="meta"><span>Web app</span><span>Mar 2026</span></div>
+      <h3>League Tracker</h3>
+      <p>A small full-stack site for tracking friends' League of Legends ranked stats.</p>
+      <ul>
+        <li>Express backend that talks to the Riot Games API</li>
+        <li>Add a player by Riot ID and see their rank and LP</li>
+        <li>Vanilla JS frontend</li>
+      </ul>
+      <div class="tags"><span class="tag">Node.js</span><span class="tag">Express</span><span class="tag">REST API</span><span class="tag">JavaScript</span></div>
+      <div class="card-foot"><span class="role">Solo</span><a href="https://github.com/MrNaimi/League_website" target="_blank" rel="noopener">View repo →</a></div>
+    </article>
+
+    </div>
+  </section>
+
+  <section>
+    <div class="section-head">
+      <h2>Game development</h2>
+      <p>Team game projects in Godot, plus a Python desktop app</p>
+    </div>
+    <div class="grid">
+
+    <article class="card">
+      <div class="media">
+        <video src="Videos/Heal_Project.mp4" autoplay muted loop playsinline preload="metadata" aria-label="HEAL Project gameplay: robot mascot and mini-games"></video>
+      </div>
+      <div class="meta"><span>Educational game</span><span>Jan 2025 – Apr 2026</span></div>
+      <h3>HEAL Project</h3>
+      <p>A serious game for children. A friendly robot mascot teaches them about sleep, nutrition and exercise through mini-games.</p>
+      <ul>
+        <li>About ten mini-games: cooking, basketball, memory, sledding, bedtime and more</li>
+        <li>Records player choices to JSON for feedback and research</li>
+        <li>Available in Finnish and English</li>
+      </ul>
+      <div class="tags"><span class="tag">Godot 4.4</span><span class="tag">GDScript</span><span class="tag">JSON</span></div>
+      <div class="card-foot"><span class="role">Team of 5</span><a href="https://github.com/Vuori1/HEAL_Project" target="_blank" rel="noopener">View repo →</a></div>
+    </article>
+
+    <article class="card">
+      <div class="media">
+        <video src="Videos/Holy_paladin.mp4" autoplay muted loop playsinline preload="metadata" aria-label="Holy Paladin gameplay: spells and boss fights"></video>
+      </div>
+      <div class="meta"><span>Game</span><span>Jan–Mar 2025</span></div>
+      <h3>Holy Paladin</h3>
+      <p>A 2D action game where you play as a holy paladin fighting bosses like Cerberus and an evil wizard.</p>
+      <ul>
+        <li>Spells on an action bar with cooldowns, plus a dash</li>
+        <li>Skill tree for unlocking abilities</li>
+        <li>Boss mechanics such as fire and lava waves, plus a minimap</li>
+      </ul>
+      <div class="tags"><span class="tag">Godot 4.4</span><span class="tag">GDScript</span></div>
+      <div class="card-foot"><span class="role">Team of 4</span><a href="https://github.com/MrNaimi/Holy_paladin" target="_blank" rel="noopener">View repo →</a></div>
+    </article>
+
+    <article class="card">
+      <div class="media">
+        <video src="Videos/Boss_Monster_video.mp4" autoplay muted loop playsinline preload="metadata" aria-label="Boss Monster gameplay"></video>
+      </div>
+      <div class="meta"><span>Game</span><span>Sep–Nov 2024</span></div>
+      <h3>Boss Monster</h3>
+      <p>A card-based dungeon game where you play the boss. You build your dungeon with cards, and heroes try to fight their way through it.</p>
+      <ul>
+        <li>Drag-and-drop cards driven by a card state machine</li>
+        <li>Heroes follow paths through the dungeon rooms</li>
+        <li>Town and dungeon scenes, plus custom shaders</li>
+      </ul>
+      <div class="tags"><span class="tag">Godot 4.3</span><span class="tag">GDScript</span><span class="tag">Shaders</span></div>
+      <div class="card-foot"><span class="role">Team project</span><a href="https://github.com/MrNaimi/Boss_Monster" target="_blank" rel="noopener">View repo →</a></div>
+    </article>
+
+    <article class="card">
+      <div class="media">
+        <video src="Videos/Gamehub.mp4" autoplay muted loop playsinline preload="metadata" aria-label="Game Hub: menu, 2048, Snake and Blackjack"></video>
+      </div>
+      <div class="meta"><span>Desktop app</span><span>Apr–May 2024</span></div>
+      <h3>Game Hub</h3>
+      <p>A desktop game launcher with three classic games, each with its own menu and rules screen.</p>
+      <ul>
+        <li>2048, Snake and Blackjack</li>
+        <li>Tkinter menu for moving between the games</li>
+      </ul>
+      <div class="tags"><span class="tag">Python</span><span class="tag">Tkinter</span></div>
+      <div class="card-foot"><span class="role">Pair project, university</span><span class="role">GitLab (UTU)</span></div>
+    </article>
+
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© <span id="year"></span> Antti Niemi</span>
+    <a href="https://github.com/MrNaimi" target="_blank" rel="noopener">github.com/MrNaimi</a>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+
+  // Theme toggle
+  const root = document.documentElement;
+  try { const t = localStorage.getItem('theme'); if (t) root.dataset.theme = t; } catch (e) {}
+  document.getElementById('themeToggle').addEventListener('click', () => {
+    const dark = root.dataset.theme
+      ? root.dataset.theme === 'dark'
+      : matchMedia('(prefers-color-scheme: dark)').matches;
+    root.dataset.theme = dark ? 'light' : 'dark';
+    try { localStorage.setItem('theme', root.dataset.theme); } catch (e) {}
+  });
+</script>
+</body>
+</html>
